@@ -14,9 +14,9 @@ Inkscape extension folder (eg `~/.config/inkscape/extensions/`).
 That's it!
 
 In order to work, the command line tools `gracebat`, `epstool`, and
-`ps2pdf` are all required.  The first allows Grace to be run in 'headless'
+`ps2pdf` are required.  The first allows Grace to be run in 'headless'
 mode to generate the initial EPS file.  The second is used to refine
-the bounding box.  The third is used to generate a PDF for import into
+the EPS bounding box.  The third is used to generate a PDF for import into
 Inkscape (if you can import PostScript or EPS files, then you are
 already using `ps2pdf`).
 
