@@ -60,7 +60,7 @@ try:
 except Exception:
     pass
 
-run("gracebat -nosafe -hdevice EPS " + sys.argv[-1] + " -printfile " + epsfile)
+run("gracebat -nosafe -hdevice EPS %s -printfile %s" % (sys.argv[-1], epsfile))
     
 if msg is None: run("epstool --bbox --copy %s %s" % (epsfile, epsnewbbfile))
 
