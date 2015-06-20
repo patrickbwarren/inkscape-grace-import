@@ -14,10 +14,14 @@ Inkscape extension folder (eg `$HOME/.config/inkscape/extensions/` on
 unix, or `%APPDATA%\inkscape\extensions\` on Windows).
 
 In order to work, the command line tools `gracebat`, `epstool`, and
-`ps2pdf` are required: `gracebat` usually comes with the Grace
-package, `epstool` is often packaged as a standalone tool or can be
+`ps2pdf` are required:
+
+* `gracebat` usually comes with the Grace
+package ;
+* `epstool` is often packaged as a standalone tool or can be
 obtained [here](http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm
-"epstool home page"), and `ps2pdf` is part of Ghostscript core (if you
+"epstool home page") ;
+* `ps2pdf` is part of Ghostscript (if you
 can already import EPS then you have this).
 
 ### Usage
