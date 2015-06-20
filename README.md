@@ -15,7 +15,7 @@ unix, or `%APPDATA%\inkscape\extensions\` on Windows).
 
 In order to work, the following tools are required:
 
-* `gracebat`, 'headless' (batch) mode which usually comes with
+* `gracebat`, 'headless' (batch) mode tool which usually comes with
 [Grace](http://plasma-gate.weizmann.ac.il/Grace/ "Grace home page") ;
 * `epstool`, which is often packaged as a standalone tool and can be
 obtained [here](http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm
