@@ -62,9 +62,9 @@ except Exception:
 
 run("gracebat -nosafe -hdevice EPS " + sys.argv[-1] + " -printfile " + epsfile)
     
-if msg is None: run("epstool --bbox --copy " + epsfile + " " + epsnewbbfile)
+if msg is None: run("epstool --bbox --copy %s %s" % (epsfile, epsnewbbfile))
 
-if msg is None: run("ps2pdf -dEPSCrop " + epsnewbbfile + " " + pdffile)
+if msg is None: run("ps2pdf -dEPSCrop %s %s" % (epsnewbbfile, pdffile))
 
 if msg is None:
     if os.name == 'nt':
