@@ -10,39 +10,29 @@ the necessary command line tools into an Inkscape extension.
 ### Installation
 
 Copy the files `agr_import.py` and `agr_import.inx` into your local
-Inkscape extension folder (eg `~/.config/inkscape/extensions/`).
-That's it!
+Inkscape extension folder (eg `$HOME/.config/inkscape/extensions/` on
+unix, or `%APPDATA%\inkscape\extensions\` on Windows).
 
 In order to work, the command line tools `gracebat`, `epstool`, and
-`ps2pdf` are required.  The first allows Grace to be run in 'headless'
-mode to generate the initial EPS file.  The second is used to refine
-the EPS bounding box.  The third is used to generate a PDF for import into
-Inkscape (if you can import PostScript or EPS files, then you are
-already using `ps2pdf`).
-
-To obtain these: `gracebat` usually comes with the Grace package,
-`epstool` is often packaged as a standalone tool or can be obtained
-[here](http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm "epstool
-home page"), and `ps2pdf` is part of Ghostscript core package (as
-mentioned, if you can already import EPS then you have this).
+`ps2pdf` are required: `gracebat` usually comes with the Grace
+package, `epstool` is often packaged as a standalone tool or can be
+obtained [here](http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm
+"epstool home page"), and `ps2pdf` is part of Ghostscript core (if you
+can already import EPS then you have this).
 
 ### Usage
 
 In Inkscape, Grace (.agr) files should now appear under File &rarr;
 Import, and can be selected for import.  The conversion to EPS (PDF)
 is done automatically, and the subsequent dialogue is the standard one
-for importing EPS (PDF) files.  It's as simple as that!
-
-The intermediate (temporary) EPS files are discarded.
-
-Just a comment on the downstream workflow: once imported, I usually
-lock the aspect ratio and reset the width to something more useful (eg
-3.5 in).  This can be done with using the resizing options in the
-'Tool Controls Bar' above the main drawing page in Inkscape.
+for importing EPS (PDF) files.  The intermediate (temporary) EPS (PDF)
+files are discarded.
 
 ---
 
 Copyright &copy; 2015 Patrick B Warren.
+
+Email: patrickbwarren{at}gmail{dot}com
 
 Based on `eps_input.inx`, `ps2pdf-ext.py` (python script for running
 `ps2pdf` in Inkscape extensions) and `run_command.py` (module for

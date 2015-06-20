@@ -7,8 +7,6 @@ Python script for importing Grace (.agr) files into Inkscape
 Copyright (C) 2015 Patrick B Warren
 
 Email: patrickbwarren@gmail.com
-Paper mail: Dr Patrick B Warren, 11 Bryony Way, Birkenhead,
-  Merseyside, CH42 4LY, UK.
 
 Based on ps2pdf-ext.py and run_command.py
 Python script for running ps2pdf in Inkscape extensions
@@ -30,9 +28,13 @@ along with this program.  If not, see
 <http://www.gnu.org/licenses/>.
 """
 
-import os
-import sys
-import tempfile
+# In order to get a return code from the process, we use
+# subprocess.Popen which is in Python 2.4 onwards (released 2004).  As
+# the Inkscape package for Windows includes Python 2.6, this should
+# cover all *modern* supported platforms.
+# cf run_command.py in system-wide extensions directory
+
+import os, sys, tempfile
 from subprocess import Popen, PIPE
 
 msg = None
@@ -58,14 +60,11 @@ try:
 except Exception:
     pass
 
-if msg is None:
-    run("gracebat -nosafe -hdevice EPS " + sys.argv[-1] + " -printfile " + epsfile)
+run("gracebat -nosafe -hdevice EPS " + sys.argv[-1] + " -printfile " + epsfile)
     
-if msg is None:
-    run("epstool --bbox --copy " + epsfile + " " + epsnewbbfile)
+if msg is None: run("epstool --bbox --copy " + epsfile + " " + epsnewbbfile)
 
-if msg is None:
-    run("ps2pdf -dEPSCrop " + epsnewbbfile + " " + pdffile)
+if msg is None: run("ps2pdf -dEPSCrop " + epsnewbbfile + " " + pdffile)
 
 if msg is None:
     if os.name == 'nt':
@@ -79,17 +78,12 @@ if msg is None:
     except IOError, inst:
         msg = "Error reading temporary file: %s" % str(inst)
 
-try:
-    os.remove(epsfile)
-    os.remove(epsnewbbfile)
-    os.remove(pdffile)
-except Exception:
-    pass
+os.remove(epsfile)
+os.remove(epsnewbbfile)
+os.remove(pdffile)
 
 if msg is not None:
     sys.stderr.write(msg + "\n")
     sys.exit(1)
 else:
     sys.exit(0)
-
-# vim: expandtab shiftwidth=4 tabstop=8 softtabstop=4 fileencoding=utf-8 textwidth=99
