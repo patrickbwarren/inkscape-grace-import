@@ -13,15 +13,14 @@ Copy the files `agr_import.py` and `agr_import.inx` into your local
 Inkscape extension folder (eg `$HOME/.config/inkscape/extensions/` on
 unix, or `%APPDATA%\inkscape\extensions\` on Windows).
 
-In order to work, the command line tools `gracebat`, `epstool`, and
-`ps2pdf` are required:
+In order to work, the following tools are required:
 
-* `gracebat` usually comes with the Grace
+* `gracebat`, 'headless' (batch) mode which usually comes with the Grace
 package ;
-* `epstool` is often packaged as a standalone tool or can be
+* `epstool`, which is often packaged as a standalone tool and can be
 obtained [here](http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm
 "epstool home page") ;
-* `ps2pdf` is part of Ghostscript (if you
+* `ps2pdf`, which is part of Ghostscript (if you
 can already import EPS then you have this).
 
 ### Usage
