@@ -36,7 +36,7 @@ is done automatically, and the subsequent dialogue is the standard one
 for importing EPS (PDF) files.  The intermediate (temporary) EPS (PDF)
 files are discarded.
 
----
+### Copying
 
 Copyright &copy; 2015 Patrick B Warren.
 
