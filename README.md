@@ -56,9 +56,12 @@ along with this program.  If not, see
 
 This program is copyright &copy; 2015 Patrick B Warren.
 
-Email: patrickbwarren{at}gmail{dot}com
-
-Based on `eps_input.inx`, `ps2pdf-ext.py` (python script for running
+The program is based on `eps_input.inx`, `ps2pdf-ext.py` (python script for running
 `ps2pdf` in Inkscape extensions) and `run_command.py` (module for
 running SVG-generating commands in Inkscape extensions) -- copyright
 &copy; 2008 Stephen Silver.
+
+### Contact
+
+Email: patrickbwarren{at}gmail{dot}com
+
