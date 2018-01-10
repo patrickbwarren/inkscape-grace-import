@@ -90,7 +90,7 @@ try:
 
 except AgrInputError, msg:
     
-    sys.stderr.write(msg + "\n")
+    sys.stderr.write(str(msg) + "\n")
     exit_code = 1
 
 for file in [epsfile, epsnewbbfile, pdffile]:
