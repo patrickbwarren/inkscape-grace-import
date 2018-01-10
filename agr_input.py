@@ -34,56 +34,67 @@ along with this program.  If not, see
 # cover all *modern* supported platforms.
 # cf run_command.py in system-wide extensions directory
 
-import os, sys, tempfile
+import os, sys
+from tempfile import NamedTemporaryFile
 from subprocess import Popen, PIPE
 
-msg = None
+# Define a (trivial) exception class to catch some errors
+
+class AgrInputError(Exception):
+    pass
+
+# Run a shell command and capture the output
 
 def run(command):
     prog_name = command.split(' ')[0]
     try:
         p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
-        rc = p.wait()
-        out = p.stdout.read()
-        err = p.stderr.read()
-        if rc:
-            msg = "%s failed:\n%s\n%s\n" % (prog_name, out, err)
+        out, err = p.communicate()
+        if p.returncode:
+            raise AgrInputError("%s failed:\n%s\n%s\n" % (prog_name, out, err))
     except Exception, inst:
-        msg = "Error attempting to run %s: %s" % (prog_name, str(inst))
-        
-epsfile = tempfile.mktemp(".eps")
-epsnewbbfile = tempfile.mktemp(".eps")
-pdffile = tempfile.mktemp(".pdf")
+        raise AgrInputError("Error attempting to run %s: %s" % (prog_name, str(inst)))
+
+# Make and keep a temporary file with a given suffix
+    
+def make_and_keep(suffix):
+    f = NamedTemporaryFile(suffix=suffix, delete=False)
+    f.close()
+    return f.name
+
+# Make some temporary files which will be deleted at the end
+
+epsfile = make_and_keep(".eps")
+epsnewbbfile = make_and_keep(".eps")
+pdffile = make_and_keep(".pdf")
+
+exit_code = 0
 
 try:
-    os.chdir(tempfile.gettempdir())
-except Exception:
-    pass
 
-run("gracebat -nosafe -hdevice EPS %s -printfile %s" % (sys.argv[-1], epsfile))
-    
-if msg is None: run("epstool --bbox --copy %s %s" % (epsfile, epsnewbbfile))
+    run("gracebat -nosafe -hdevice EPS %s -printfile %s" % (sys.argv[-1], epsfile))
+    run("epstool --bbox --copy %s %s" % (epsfile, epsnewbbfile))
+    run("ps2pdf -dEPSCrop %s %s" % (epsnewbbfile, pdffile))
 
-if msg is None: run("ps2pdf -dEPSCrop %s %s" % (epsnewbbfile, pdffile))
-
-if msg is None:
     if os.name == 'nt':
         import msvcrt
         msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
+
     try:
         f = open(pdffile, "rb")
         data = f.read()
         sys.stdout.write(data)
         f.close()
     except IOError, inst:
-        msg = "Error reading temporary file: %s" % str(inst)
+        raise AgrInputError("Error reading temporary file: %s" % str(inst))
 
-os.remove(epsfile)
-os.remove(epsnewbbfile)
-os.remove(pdffile)
-
-if msg is not None:
+except AgrInputError, msg:
+    
     sys.stderr.write(msg + "\n")
-    sys.exit(1)
-else:
-    sys.exit(0)
+    exit_code = 1
+
+for file in [epsfile, epsnewbbfile, pdffile]:
+    if file and os.path.exists(file):
+        os.unlink(file)
+
+sys.exit(exit_code)
