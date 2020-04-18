@@ -29,7 +29,7 @@ can already import EPS then you have this).
 
 ### Usage
 
-In Inkscape, Grace (.agr) files should now appear under File &rarr;
+In Inkscape, Grace (`.agr`) files should now appear under File &rarr;
 Import, and can be selected for import.  The conversion to EPS (PDF)
 is done automatically, and the subsequent dialogue is the standard one
 for importing EPS (PDF) files.  The intermediate (temporary) EPS (PDF)
@@ -67,5 +67,4 @@ running SVG-generating commands in Inkscape extensions) -- copyright
 
 ### Contact
 
-Email: patrickbwarren{at}gmail{dot}com
-
+Email: <patrickbwarren@gmail.com>
