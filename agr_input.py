@@ -3,8 +3,9 @@
 """
 agr_input.py
 Python script for importing Grace (.agr) files into Inkscape
+Updated (2020) for python3 and inkscape 1.0beta
 
-Copyright (C) 2015 Patrick B Warren
+Copyright (C) 2015, 2020 Patrick B Warren
 
 Email: patrickbwarren@gmail.com
 
@@ -51,9 +52,9 @@ def run(command):
         p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
         out, err = p.communicate()
         if p.returncode:
-            raise AgrInputError("%s failed:\n%s\n%s\n" % (prog_name, out, err))
-    except Exception, inst:
-        raise AgrInputError("Error attempting to run %s: %s" % (prog_name, str(inst)))
+            raise AgrInputError(f'{prog_name} failed:\n{out}\n{err}\n')
+    except Exception:
+        raise AgrInputError(f'Error attempting to run {prog_name}')
 
 # Make and keep a temporary file with a given suffix
     
@@ -64,37 +65,37 @@ def make_and_keep(suffix):
 
 # Make some temporary files which will be deleted at the end
 
-epsfile = make_and_keep(".eps")
-epsnewbbfile = make_and_keep(".eps")
-pdffile = make_and_keep(".pdf")
+eps_file = make_and_keep('.eps')
+eps_newbb_file = make_and_keep('.eps')
+pdf_file = make_and_keep('.pdf')
 
 exit_code = 0
 
 try:
 
-    run("gracebat -nosafe -hdevice EPS %s -printfile %s" % (sys.argv[-1], epsfile))
-    run("epstool --bbox --copy %s %s" % (epsfile, epsnewbbfile))
-    run("ps2pdf -dEPSCrop %s %s" % (epsnewbbfile, pdffile))
+    run(f'gracebat -nosafe -hdevice EPS {sys.argv[-1]} -printfile {eps_file}')
+    run(f'epstool --bbox --copy {eps_file} {eps_newbb_file}')
+    run(f'ps2pdf -dEPSCrop {eps_newbb_file} {pdf_file}')
 
     if os.name == 'nt':
         import msvcrt
         msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
 
     try:
-        f = open(pdffile, "rb")
+        f = open(pdf_file, 'rb')
         data = f.read()
-        sys.stdout.write(data)
+        sys.stdout.buffer.write(data)
         f.close()
-    except IOError, inst:
-        raise AgrInputError("Error reading temporary file: %s" % str(inst))
+    except IOError:
+        raise AgrInputError('Error reading temporary file')
 
-except AgrInputError, msg:
+except AgrInputError as msg:
     
-    sys.stderr.write(str(msg) + "\n")
+    sys.stderr.write(str(msg) + '\n')
     exit_code = 1
 
-for file in [epsfile, epsnewbbfile, pdffile]:
+for file in [eps_file, eps_newbb_file, pdf_file]:
     if file and os.path.exists(file):
-        os.unlink(file)
+        os.remove(file)
 
 sys.exit(exit_code)
