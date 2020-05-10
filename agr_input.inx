@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <_name>Grace Input</_name>
-    <id>org.patrickbwarren.input.agr</id>
-    <dependency type="extension">org.inkscape.input.pdf</dependency>    
+    <name>Grace Input</name>
+    <id>org.patrickbwarren.agr_input</id>
+    <dependency type="extension">org.inkscape.input.pdf</dependency>
     <dependency type="executable" location="path">gracebat</dependency>
     <dependency type="executable" location="path">epstool</dependency>
     <dependency type="executable" location="path">ps2pdf</dependency>
-    <dependency type="executable" location="extensions">agr_input.py</dependency>
     <input>
         <extension>.agr</extension>
         <mimetype>application/grace</mimetype>
-        <_filetypename>Grace file (*.agr)</_filetypename>
-        <_filetypetooltip>Grace file</_filetypetooltip>
+        <filetypename>Grace file (*.agr)</filetypename>
+        <filetypetooltip>Import grace file</filetypetooltip>
     </input>
     <script>
-        <command reldir="extensions" interpreter="python">agr_input.py</command>
+        <command location="extensions" interpreter="python">agr_input.py</command>
         <helper_extension>org.inkscape.input.pdf</helper_extension>
     </script>
 </inkscape-extension>
