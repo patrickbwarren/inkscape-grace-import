@@ -23,7 +23,7 @@ Wrapper around gracebat and epstool
 
 import os
 import inkex
-from inkex.command import call
+from inkex.command import call as external
 
 class GraceInput(inkex.CallExtension):
     """Load grace (.agr) files by converting them to pdf"""
@@ -31,11 +31,12 @@ class GraceInput(inkex.CallExtension):
     output_ext = 'pdf'
 
     def call(self, input_file, output_file):
+        """Steps to convert input file (.agr) to output file (.pdf)"""
         eps_file = os.path.join(self.tempdir, 'output.eps')
         cropped_file = os.path.join(self.tempdir, 'cropped.eps')
-        call('gracebat', '-hdevice', 'EPS', input_file, '-printfile', eps_file)
-        call('epstool', '--bbox', '--copy', eps_file, cropped_file)
-        call('ps2pdf', '-dEPSCrop', cropped_file, output_file)
+        external('gracebat', '-hdevice', 'EPS', input_file, '-printfile', eps_file)
+        external('epstool', '--bbox', '--copy', eps_file, cropped_file)
+        external('ps2pdf', '-dEPSCrop', cropped_file, output_file)
 
 if __name__ == '__main__':
     GraceInput().run()
