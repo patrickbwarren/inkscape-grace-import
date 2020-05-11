@@ -30,7 +30,7 @@ can already import EPS then you have this).
 ### Usage
 
 In Inkscape, Grace (`.agr`) files should now appear under File &rarr;
-Import, and can be selected for import.  The conversion to PDf via EPS
+Import, and can be selected for import.  The conversion to PDF via EPS
 is done automatically, and the subsequent dialogue is the standard one
 for importing PDF files.
 
