@@ -1,6 +1,6 @@
 ## Import Grace (.agr) files into Inkscape
 
-*Updated (2020) for python3 and Inkscape 1.0*
+*May 2020: updated for Inkscape 1.0*
 
 Plots prepared using the
 [Grace](http://plasma-gate.weizmann.ac.il/Grace/ "Grace home page")
