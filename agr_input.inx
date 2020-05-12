@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+agr_input.inx
+Wrapper around gracebat and epstool
+
+Copyright (C) 2018, 2020 Patrick B Warren
+Email: patrickbwarren@gmail.com
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see
+<http://www.gnu.org/licenses/>.
+-->
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <name>Grace Input</name>
-    <id>org.patrickbwarren.agr_input</id>
-    <dependency type="extension">org.inkscape.input.pdf</dependency>
-    <dependency type="executable" location="path">gracebat</dependency>
-    <dependency type="executable" location="path">epstool</dependency>
-    <dependency type="executable" location="path">ps2pdf</dependency>
-    <input>
-        <extension>.agr</extension>
-        <mimetype>application/grace</mimetype>
-        <filetypename>Grace file (*.agr)</filetypename>
-        <filetypetooltip>Import grace file</filetypetooltip>
-    </input>
-    <script>
-        <command location="extensions" interpreter="python">agr_input.py</command>
-        <helper_extension>org.inkscape.input.pdf</helper_extension>
-    </script>
+  <name>Grace Input</name>
+  <id>org.patrickbwarren.agr_input</id>
+  <dependency type="extension">org.inkscape.input.pdf</dependency>
+  <dependency type="executable" location="path">gracebat</dependency>
+  <dependency type="executable" location="path">epstool</dependency>
+  <dependency type="executable" location="path">ps2pdf</dependency>
+  <input>
+    <extension>.agr</extension>
+    <mimetype>application/grace</mimetype>
+    <filetypename>Grace file (*.agr)</filetypename>
+    <filetypetooltip>Import grace file</filetypetooltip>
+  </input>
+  <script>
+    <command location="extensions" interpreter="python">agr_input.py</command>
+    <helper_extension>org.inkscape.input.pdf</helper_extension>
+  </script>
 </inkscape-extension>
