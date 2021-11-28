@@ -4,7 +4,7 @@
 agr_input.py
 Wrapper around gracebat and epstool
 
-Copyright (C) 2015, 2020 Patrick B Warren
+Copyright (c) 2015, 2020 Patrick B Warren
 Email: patrickbwarren@gmail.com
 
 This program is free software: you can redistribute it and/or modify
